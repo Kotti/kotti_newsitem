@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:tal="http://xml.zope.org/namespaces/tal"
       xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      i18n:domain="kotti_newsitem"
       metal:use-macro="api.macro('kotti:templates/view/master.pt')">
 
   <article metal:fill-slot="content" class="document-view content">
