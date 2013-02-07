@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      metal:use-macro="api.macro('kotti:templates/view/master.pt')">
+
+  <article metal:fill-slot="content" class="all-news-view content">
+    <h1>All News</h1>
+    <dl>
+      <tal:block tal:repeat="item items">
+        <dt>
+          ${item.title} (${api.format_date(item.publish_date)})
+        </dt>
+        <dd>
+          ${item.description}
+        </dd>
+        <dd>
+          <a href="${request.resource_url(item)}">Read more…</a>
+        </dd>
+      </tal:block>
+    </dl>
+  </article>
+
+</html>

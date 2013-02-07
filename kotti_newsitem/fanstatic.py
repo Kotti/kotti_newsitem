@@ -12,13 +12,13 @@ css = Resource(
     library,
     'css/style.css',
     minified='css/style.min.css'
-)
+    )
 
 js = Resource(
     library,
     'js/script.js',
     minified='js/script.min.js',
     depends=[jquery, ]
-)
+    )
 
 kotti_newsitem = Group([css, js, ])

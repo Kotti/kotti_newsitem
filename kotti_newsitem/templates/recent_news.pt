@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <ul class="nav nav-list">
+    <li class="nav-header">Recent news</li>
+    <li tal:repeat="item items">
+      <a href="${request.resource_url(item)}" title="${item.description}">
+        ${item.title} (${api.format_date(item.publish_date)})
+      </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="${request.application_url}/all_news">
+        All news…
+      </a>
+    </li>
+  </ul>
+</html>
