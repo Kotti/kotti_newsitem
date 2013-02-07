@@ -2,7 +2,7 @@
 kotti_newsitem
 ==============
 
-|build status production|_
+|build status production|
 
 News Item content type for Kotti.
 
@@ -49,11 +49,10 @@ like this::
 Development
 ===========
 
-|build status master|_
+|build status master|
 
 Contributions to ``kotti_newsitem`` are highly welcome. Just clone its Github
 repository and submit your contributions as pull requests.
-
 
 
 .. |build status production| image:: https://travis-ci.org/Kotti/kotti_newsitem.png?branch=production
