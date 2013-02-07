@@ -4,7 +4,6 @@ from datetime import date
 
 from colander import SchemaNode
 from colander import Date
-from kotti import get_settings
 from kotti.resources import Content
 from kotti.security import has_permission
 from kotti.views.edit.content import DocumentSchema
@@ -15,8 +14,8 @@ from pyramid.view import view_defaults
 from sqlalchemy import desc
 
 from kotti_newsitem import _
+from kotti_newsitem.fanstatic import css
 from kotti_newsitem.resources import NewsItem
-from kotti_newsitem.fanstatic import kotti_newsitem
 
 
 class NewsItemSchema(DocumentSchema):
@@ -66,13 +65,15 @@ class BaseView(object):
         self.context = context
         self.request = request
 
+        css.need()
+
 
 @view_defaults(context=NewsItem, permission='view')
 class NewsItemView(BaseView):
     """ View for NewsItem. """
 
     @view_config(name='view',
-                 renderer='kotti_newsitem:templates/NewsItem.pt')
+                 renderer='kotti_newsitem:templates/news_item.pt')
     def view(self):
 
         return {}

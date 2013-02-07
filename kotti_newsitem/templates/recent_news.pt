@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:tal="http://xml.zope.org/namespaces/tal">
-  <ul class="nav nav-list">
+  <ul class="nav nav-list recent-news">
     <li class="nav-header">Recent news</li>
     <li tal:repeat="item items">
       <a href="${request.resource_url(item)}" title="${item.description}">
