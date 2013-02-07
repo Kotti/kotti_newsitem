@@ -2,6 +2,8 @@
 kotti_newsitem
 ==============
 
+|build status production|_
+
 News Item content type for Kotti.
 
 This package provides:
@@ -44,5 +46,17 @@ like this::
 
     kotti_newsitem.widget.num_news = 10
 
+Development
+===========
+
+|build status master|_
+
+Contributions to ``kotti_newsitem`` are highly welcome. Just clone its Github
+repository and submit your contributions as pull requests.
+
+
+
+.. |build status production| image:: https://travis-ci.org/Kotti/kotti_newsitem.png?branch=production
+.. |build status master| image:: https://travis-ci.org/Kotti/kotti_newsitem.png?branch=master
 .. _Find out more about Kotti: http://pypi.python.org/pypi/Kotti
 .. _kotti.view.slots API docs: http://kotti.readthedocs.org/en/latest/_modules/kotti/views/slots.html#assign_slot
