@@ -14,10 +14,14 @@ def test_kotti_configure():
     kotti_configure(settings)
 
     assert settings['pyramid.includes'] == ' kotti_newsitem'
-    assert settings['kotti.available_types'] == ' kotti_newsitem.resources.NewsItem'
+    assert settings['kotti.available_types'] == ' kotti_newsitem.resources.NewsItem kotti_newsitem.resources.NewsPage'
 
     assert 'kotti_newsitem.widget.slot' not in settings
     assert settings['kotti_newsitem.widget.num_news'] == 5
+
+    settings['kotti_newsitem.num_news'] = "3"
+    kotti_configure(settings)
+    assert settings['kotti_newsitem.num_news'] == 3
 
     settings['kotti_newsitem.widget.num_news'] = "3"
     kotti_configure(settings)

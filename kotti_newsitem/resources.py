@@ -3,6 +3,7 @@
 """
 Created on 2013-02-07
 :author: Andreas Kaiser (disko)
+:contributors: Jeff Pittman (geojeff)
 """
 
 from datetime import date
@@ -16,6 +17,31 @@ from sqlalchemy import Integer
 from zope.interface import implements
 
 from kotti_newsitem import _
+
+
+class NewsPage(Document):
+    """ News page content type.
+
+        A NewsPage is a full page display for news items, as compared to the
+        recent news widget that be used in a slot. It works the same way as
+        the recent news widget, using the same template.
+    """
+
+    implements(IDefaultWorkflow)
+
+    id = Column(Integer(), ForeignKey('documents.id'), primary_key=True)
+
+    type_info = Document.type_info.copy(
+        name=u'NewsPage',
+        title=u'News Page',
+        add_view=u'add_newspage',
+        addable_to=[u'Document', u'NewsPage'],
+        selectable_default_views=[],
+    )
+
+    def __init__(self, **kwargs):
+
+        super(NewsPage, self).__init__(**kwargs)
 
 
 class NewsItem(Document):
@@ -42,7 +68,7 @@ class NewsItem(Document):
         name=u'NewsItem',
         title=_(u'News Item'),
         add_view=u'add_newsitem',
-        addable_to=['Document', ],
+        addable_to=['Document', 'NewsPage', ],
         selectable_default_views=[],
         )
 

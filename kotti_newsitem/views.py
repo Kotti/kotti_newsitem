@@ -16,6 +16,33 @@ from sqlalchemy import desc
 from kotti_newsitem import _
 from kotti_newsitem.fanstatic import css
 from kotti_newsitem.resources import NewsItem
+from kotti_newsitem.resources import NewsPage
+
+
+class NewsPageSchema(DocumentSchema):
+    """Schema for add / edit forms of NewsPage"""
+    pass
+
+
+@view_config(name=NewsPage.type_info.add_view,
+             permission='add',
+             renderer='kotti:templates/edit/node.pt')
+class NewsPageAddForm(AddFormView):
+    """ Add form for NewsPage. """
+
+    schema_factory = NewsPageSchema
+    add = NewsPage
+    item_type = _(u"NewsPage")
+
+
+@view_config(name='edit',
+             context=NewsPage,
+             permission='edit',
+             renderer='kotti:templates/edit/node.pt')
+class NewsPageEditForm(EditFormView):
+    """ Edit form for NewsPage. """
+
+    schema_factory = NewsPageSchema
 
 
 class NewsItemSchema(DocumentSchema):
@@ -127,5 +154,18 @@ class NewsItemListViews(BaseView):
     def all_news(self):
 
         items = self.news_items()
+
+        return {'items': items}
+
+
+@view_defaults(context=NewsPage, permission='view')
+class NewsPageView(NewsItemListViews):
+
+    @view_config(name='view',
+                 renderer='kotti_newsitem:templates/news_page.pt')
+    def news_page(self):
+
+        settings = self.request.registry.settings
+        items = self.news_items(settings['kotti_newsitem.num_news'])
 
         return {'items': items}

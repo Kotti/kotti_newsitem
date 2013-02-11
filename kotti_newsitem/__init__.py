@@ -3,6 +3,7 @@
 """
 Created on 2013-02-07
 :author: Andreas Kaiser (disko)
+:contributors: Jeff Pittman (geojeff)
 """
 
 from pyramid.i18n import TranslationStringFactory
@@ -15,7 +16,15 @@ _ = TranslationStringFactory('kotti_newsitem')
 def kotti_configure(settings):
 
     settings['pyramid.includes'] += ' kotti_newsitem'
+
     settings['kotti.available_types'] += ' kotti_newsitem.resources.NewsItem'
+    settings['kotti.available_types'] += ' kotti_newsitem.resources.NewsPage'
+
+    if 'kotti_newsitem.num_news' in settings:
+        settings['kotti_newsitem.num_news'] = int(
+            settings['kotti_newsitem.num_news'])
+    else:
+        settings['kotti_newsitem.num_news'] = 10
 
     if 'kotti_newsitem.widget.num_news' in settings:
         settings['kotti_newsitem.widget.num_news'] = int(
