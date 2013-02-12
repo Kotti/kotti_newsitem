@@ -8,6 +8,8 @@ Created on 2013-02-07
 
 from pyramid.i18n import TranslationStringFactory
 
+from kotti.resources import Document
+
 from kotti.views.slots import assign_slot
 
 _ = TranslationStringFactory('kotti_newsitem')
@@ -18,7 +20,6 @@ def kotti_configure(settings):
     settings['pyramid.includes'] += ' kotti_newsitem'
 
     settings['kotti.available_types'] += ' kotti_newsitem.resources.NewsItem'
-    settings['kotti.available_types'] += ' kotti_newsitem.resources.NewsPage'
 
     if 'kotti_newsitem.num_news' in settings:
         settings['kotti_newsitem.num_news'] = int(
@@ -37,6 +38,9 @@ def kotti_configure(settings):
 
 
 def includeme(config):
+
+    Document.type_info.add_selectable_default_view("news_listing",
+                                                   _("News Listing"))
 
     config.add_translation_dirs('kotti_newsitem:locale')
     config.scan(__name__)

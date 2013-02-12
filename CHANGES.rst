@@ -4,7 +4,7 @@ Changelog
 0.2
 ---
 
--   Added a NewsPage content type.
+-   Added a full-page style news listing.
 
 0.1
 ---

@@ -4,20 +4,21 @@ kotti_newsitem
 
 |build status production|
 
-News Item and News Page content types for Kotti.
+News Item content type for Kotti.
 
 This package provides:
 
 -   a ``NewsItem`` content type that is just a Document with a different
     default view,
 
--   a ``NewsPage`` content type that is a Document used for listing news items
-    on a "full" page-style display,
+-   a ``news_listing`` view that provides an alternative default view for
+    Document, for listing most recent published ``NewsItems`` on a full-page
+    style display,
 
--   a ``RecentNews`` widget (that can be assigned to a slot) showing (by
-    default) the 5 most recent, published ``NewsItems`` and
+-   a ``RecentNews`` widget for showing most recent published ``NewsItems``
+    in a slot, and
 
--   an ``all_news`` view that shows all ``News Items`` in your site,
+-   an ``all_news`` view that shows ALL ``News Items`` in your site,
     chronologically ordered.
 
 `Find out more about Kotti`_
@@ -48,49 +49,45 @@ organize them somehow, as by year::
         2014
             ...
 
-This is primarily to help organize for the content creator; this would mainly
-be for storing the news items, not necessarily for presenting them. Display of
-news items as a list can be done either by adding a NewsPage or by using the
-recent news widget. Of course, you may choose to publish the actual storage
-hierarchy of the news items if you prefer.
+This is primarily to help the content creator organize content, but it could
+also be used as a "manual" way of presenting news items if published.  Display
+of most recent news items can be done either by selecting ``News Listing`` for
+the default view of a Document, or by using the recent news widget in a slot.
 
-.. Note:: News items need to be set to ``Public`` state to show up in either
-          the recent news widget or on a NewsPage.
+News Listing
+------------
 
-News Page
----------
-
-Add a NewsPage, usually at the top-level of your site, if you want a full-page
-style list display of recent news items. Control the number of recent items
-shown with::
+For a full-page listing of most recent news items, add a Document, usually at
+the top-level of your site and titled "News", and set its default view to
+``News Listing``.  Control the number of recent items shown with::
 
     kotti_newsitem.num_news = 10
 
-At the bottom of the list of news items, regardless of the number of most
-recent news items listed, is a link to a page for ``All News``, where all news
-items are shown.
+At the bottom of the list of news items, regardless of the number of recent
+news items listed, is a link to a page for ``All News``, where all news items
+are shown.
 
 Recent News Widget
 ------------------
 
-If you want the ``RecentNews`` widget to show up in your site, either in place
-of a dedicated NewsPage or to augment it, you have to add a line like this to
-enable the recent news widget::
+If you want the ``RecentNews`` widget to show up in your site in a slot, either
+in place of a dedicated full-page news listing or to augment it, you have to
+add a line like this to enable the recent news widget::
 
     kotti_newsitem.widget.slot = right
 
 The for a list of available slots in a default Kotti site see the
 `kotti.view.slots API docs`_
 
-To change the default number of news items shown in the widget (5), add a line
-like this::
+To change the default number of recent news items shown in the widget (5), add
+a line like this::
 
     kotti_newsitem.widget.num_news = 10
 
-.. Note:: kotti_newsitem.num_news controls the number of items shown on a
-          NewsPage; kotti_newsitem.widget.num_news does the same for the
-          widget. You might have the page set to show 10, but the widget
-          only 2, for example.
+.. Note:: kotti_newsitem.num_news controls the number of items shown in a
+          news listing; kotti_newsitem.widget.num_news does the same for the
+          widget. For example, you might have the news listing set to show 10,
+          but the widget only 2.
 
 Development
 ===========
