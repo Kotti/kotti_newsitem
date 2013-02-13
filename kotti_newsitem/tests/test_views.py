@@ -1,28 +1,15 @@
 from datetime import date
 from random import randint
 
-from pyramid.httpexceptions import HTTPFound
-
 from kotti.resources import get_root
 from kotti.resources import Document
-from kotti.resources import TypeInfo
 from kotti.testing import DummyRequest
 from kotti.views.edit.default_views import DefaultViewSelection
-from kotti.views.util import render_view
+from pyramid.httpexceptions import HTTPFound
 
 from kotti_newsitem.resources import NewsItem
 from kotti_newsitem.views import NewsItemListViews
 from kotti_newsitem.views import NewsItemView
-
-
-class NewsItemDummyRequest(DummyRequest):
-
-    def __init__(self, context=None):
-        super(NewsItemDummyRequest, self).__init__()
-        self.context = context
-
-    def static_url(self, name):
-        return ''  # pragma: no cover
 
 
 def test_newsitem_view(db_session, dummy_request):
