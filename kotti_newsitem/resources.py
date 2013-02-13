@@ -3,6 +3,7 @@
 """
 Created on 2013-02-07
 :author: Andreas Kaiser (disko)
+:contributors: Jeff Pittman (geojeff)
 """
 
 from datetime import date
