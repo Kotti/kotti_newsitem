@@ -39,6 +39,9 @@ setup(
     install_requires=[
         'Kotti',
         ],
+    extras_require={
+        'testing': ["coveralls"],
+    },
     entry_points={
         'fanstatic.libraries': [
             'kotti_newsitem = kotti_newsitem.fanstatic:library',
