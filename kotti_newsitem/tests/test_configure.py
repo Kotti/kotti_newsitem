@@ -19,6 +19,10 @@ def test_kotti_configure():
     assert 'kotti_newsitem.widget.slot' not in settings
     assert settings['kotti_newsitem.widget.num_news'] == 5
 
+    settings['kotti_newsitem.num_news'] = "3"
+    kotti_configure(settings)
+    assert settings['kotti_newsitem.num_news'] == 3
+
     settings['kotti_newsitem.widget.num_news'] = "3"
     kotti_configure(settings)
     assert settings['kotti_newsitem.widget.num_news'] == 3

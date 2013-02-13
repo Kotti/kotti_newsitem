@@ -5,6 +5,7 @@ from datetime import date
 from colander import SchemaNode
 from colander import Date
 from kotti.resources import Content
+from kotti.resources import Document
 from kotti.security import has_permission
 from kotti.views.edit.content import DocumentSchema
 from kotti.views.form import AddFormView
@@ -127,5 +128,16 @@ class NewsItemListViews(BaseView):
     def all_news(self):
 
         items = self.news_items()
+
+        return {'items': items}
+
+    @view_config(name='news_listing',
+                 context=Document,
+                 permission='view',
+                 renderer='kotti_newsitem:templates/news_listing.pt')
+    def news_listing(self):
+
+        settings = self.request.registry.settings
+        items = self.news_items(settings['kotti_newsitem.num_news'])
 
         return {'items': items}
